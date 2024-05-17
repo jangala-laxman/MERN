@@ -4,6 +4,7 @@ const initialState={
     user : null,
     loading:false,
     error:{},
+    data:'',
     token:''
 }
 const slice = createSlice({
@@ -15,19 +16,19 @@ const slice = createSlice({
         .addCase(home.fulfilled, (state, action)=>{
             state.loading = false
             state.error = {}
-            state.user = action.payload
+            state.data = action.payload
         })      
         .addCase(home.pending, (state)=>{
             state.loading = true
         })    
         .addCase(home.rejected, (state, action)=>{
             state.loading = false
-            state.error = action.payload
+            state.error = action.payload.error
         })
         .addCase(login.fulfilled, (state, action)=>{
+            console.log(action)
             state.loading = false
-            state.error = {}
-            state.user = action.payload
+            state.error = null           
         })      
         .addCase(login.pending, (state)=>{
             state.loading = true

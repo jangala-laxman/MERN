@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken')
+
 const register = async (req, res) => {
   const { username, age, email, password, confirmPassword } = req.body;
   const user = await User.findOne({ email: email });
@@ -14,7 +15,7 @@ const register = async (req, res) => {
   });
   if (password === confirmPassword) {
     await newUser.save();
-    res.status(200).json(firstname, 'user Created successfully ');
+    res.status(200).json(username, 'user Created successfully ');
   } else if (password != confirmPassword) {
     alert('passwords doesnt match');
   }
@@ -26,9 +27,10 @@ const login = async (req, res) => {
   if (!user) return res.status(401).json({ message: "email doesn't exist" });
 
   if (password === user.password) {
-    const token = jwt.sign(username, 'jwt', {algorithm:'ES256'})
-    req.headers.username = username
-    res.status(200).json({token:token, firstname, message:'user logged in successfully '});
+    const token = jwt.sign(user.username, 'jwt')
+    req.username = user.username
+    
+    res.status(200).json({token:token, user:user.username, message:'user logged in successfully '});
   } else if (password != user.password) {
     res.json('email/password doesnt match');
   }
