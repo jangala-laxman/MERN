@@ -1,21 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios'
-const backendPoint = 'https://3001-jangalalaxman-mern-eydop85id8y.ws-us110.gitpod.io'
+const backendPoint = 'https://3001-jangalalaxman-mern-eydop85id8y.ws-us114.gitpod.io'
 
 const home = createAsyncThunk('home', async () => {
     try {
-        const res = await axios.get(backendPoint, {
-            auth:{
-                username:'jangala-laxman',
-                password:'kickhass#48'
-            },
-            headers: {
-                "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://3000-jangalalaxman-mern-eydop85id8y.ws-us110.gitpod.io"
-            }
-        })
-            .then((res) => res.data)
-            .catch((err) => console.log(err))
+        const res = await axios.get(backendPoint)
 
         return res
     } catch (err) {
@@ -29,17 +18,9 @@ const login = createAsyncThunk('login', async ({ username, password }) => {
         const res = await axios.post(backendPoint + '/user/login', {
             email: username,
             password: password
-        },{
-            headers: {
-                "Accept": "application/json",
-                "Access-Control-Allow-Origin": "https://3000-jangalalaxman-mern-eydop85id8y.ws-us110.gitpod.io"
-            }
-        }
-        ).then((res) => console.log(res))
-            .catch((err) => console.log(err))
-        
-        
-        return res
+        })
+        console.log(res.data)
+        return res.data
     }
     catch (err) {
         console.log(err)
@@ -54,9 +35,8 @@ const register = createAsyncThunk('register', async (form) => {
         age: form.age,
         phone: form.phone,
         password: form.password
-    }).then((res) => res.data)
-        .catch((err) => console.log(err))
-    return res
+    })
+    return res.data
 })
 
 export { home, login, register }

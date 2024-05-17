@@ -7,7 +7,7 @@ const initialState={
     data:'',
     token:''
 }
-const slice = createSlice({
+const auth = createSlice({
     name:'auth',
     initialState,
     reducers:{},
@@ -26,9 +26,11 @@ const slice = createSlice({
             state.error = action.payload.error
         })
         .addCase(login.fulfilled, (state, action)=>{
-            console.log(action)
             state.loading = false
-            state.error = null           
+            state.error = null    
+            state.user = action.payload?.username      
+            state.token = action.payload?.token       
+
         })      
         .addCase(login.pending, (state)=>{
             state.loading = true
@@ -51,5 +53,5 @@ const slice = createSlice({
         })    
     }
 })
-export const authActions = slice.actions
-export default slice.reducer
+export const authActions = auth.actions
+export default auth.reducer

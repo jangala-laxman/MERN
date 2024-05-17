@@ -1,12 +1,21 @@
+:root{
+  --bgColor:white;
+  --primaryColor : black;
+  --accentColor : indigo;
+  --accentFontColor : white
+}
+
+
 .App {
   text-align: center;
   overflow: hidden;
-
+  height:100vh;
+  background-color: var(--bgColor);
+  color:var(--primaryColor)
 }
 
 
 header {
-  background-color: #d4d9d94c;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,4 +42,9 @@ header {
   align-items: center;
   justify-content: space-evenly;
   gap:10px;
+}
+
+.links{
+  text-decoration: none;
+  color:var(--primaryColor)
 }
