@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { login } from '../redux/thunk/auth.thunk'
 import { useDispatch, useSelector } from 'react-redux'
-
+import Button from './Reuse/Button'
 const Input = React.lazy(()=>import('./Reuse/Input'))
 const Login = () => {
     const dispatch = useDispatch()
@@ -24,7 +24,7 @@ const Login = () => {
                     <input type="text" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div>
-                    <button type='submit' className='button'>Login</button>
+                    <Button type='submit' name="submit" />
                 </div>
             </form>
             <p>Not a user? <a href="/register">Register</a> here</p>
