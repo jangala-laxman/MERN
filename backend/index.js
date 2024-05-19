@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-
 const userRouter = require('./routers/user.router.js');
 
 mongoose
@@ -11,7 +10,7 @@ mongoose
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 const corsOption = {
-  origin: ['https://3000-jangalalaxman-mern-eydop85id8y.ws-us110.gitpod.io'],
+  origin: ['https://3000-jangalalaxman-mern-jxz5jnkbkmn.ws-us110.gitpod.io'],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 }
@@ -22,5 +21,7 @@ app.use('/user', userRouter);
 app.get('/', (req, res) => {
   res.send('hi there');
 });
+
+
 
 app.listen('3001', () => console.log('server is running on port 3001'));

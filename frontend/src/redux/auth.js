@@ -29,7 +29,7 @@ const auth = createSlice({
             state.loading = false
             state.error = null    
             state.user = action.payload?.username      
-            state.token = action.payload?.token       
+            state.token = action.payload?.token      
 
         })      
         .addCase(login.pending, (state)=>{

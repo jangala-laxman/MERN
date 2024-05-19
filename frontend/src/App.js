@@ -2,7 +2,7 @@ import {Routes, Route, Link} from 'react-router-dom'
 import React, {useState} from 'react';
 import './App.css';
 import logo from './logo.png'
-const MenuIcon
+
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 

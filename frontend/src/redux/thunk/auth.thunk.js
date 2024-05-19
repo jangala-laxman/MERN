@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios'
-const backendPoint = 'https://3001-jangalalaxman-mern-eydop85id8y.ws-us114.gitpod.io'
+const backendPoint = 'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us110.gitpod.io'
 
 const home = createAsyncThunk('home', async () => {
     try {
@@ -29,14 +29,21 @@ const login = createAsyncThunk('login', async ({ username, password }) => {
 })
 
 const register = createAsyncThunk('register', async (form) => {
-    const res = await axios.post(backendPoint + '/user/register', {
-        username: form.username,
-        email: form.email,
-        age: form.age,
-        phone: form.phone,
-        password: form.password
-    })
-    return res.data
+    try {
+        const res = await axios.post(backendPoint + '/user/register', {
+            username: form.username,
+            email: form.email,
+            age: form.age,
+            phone: form.phone,
+            password: form.password,
+            confirmPassword:form.confirmPassword
+        })
+        console.log(res.data)
+        return res.data
+    } catch (err) {
+        console.log(err)
+        return err
+    }
 })
 
 export { home, login, register }

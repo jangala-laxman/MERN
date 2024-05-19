@@ -5,7 +5,7 @@ const register = async (req, res) => {
   const { username, age, email, password, confirmPassword } = req.body;
   const user = await User.findOne({ email: email });
   if (user)
-    return res.status(401).json({ message: 'user email already exists' });
+    return res.status(400).json({ 'message': 'user email already exists' });
 
   const newUser = new User({
     username: username,
@@ -13,11 +13,14 @@ const register = async (req, res) => {
     email: email,
     password: password,
   });
-  if (password === confirmPassword) {
+  if (password == confirmPassword) {
     await newUser.save();
-    res.status(200).json(username, 'user Created successfully ');
+    res.status(200).json({"username":username});
   } else if (password != confirmPassword) {
-    alert('passwords doesnt match');
+    console.log(password)
+    console.log(confirmPassword)
+    console.log("passwords doesnt match")
+    res.json({"message":'passwords doesnt match'});
   }
 };
 

@@ -8,7 +8,7 @@
 
 .App {
   text-align: center;
-  overflow: hidden;
+  overflow-x: hidden;
   height:100vh;
   background-color: var(--bgColor);
   color:var(--primaryColor);
@@ -18,7 +18,7 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -36,6 +36,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap:15px;
+  
 }
 
 .nav{
@@ -44,7 +46,8 @@ header {
   justify-content: space-between;
   gap:15px;
   color:black;
-  cursor:pointer
+  cursor:pointer;
+  /* margin-right:150px; */
 }
 .nav>Link {
   text-decoration: none;
@@ -59,7 +62,6 @@ header {
   justify-content: space-evenly;
   gap:10px;
   cursor:pointer;
-
 }
 
 .links{
