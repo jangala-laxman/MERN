@@ -1,12 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios'
-const backendPoint = 'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us110.gitpod.io'
+import store from '../store'
+// import axiosIns from "../axios"
+const backendPoint = 'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io'
+
+// const AttachToken = ()=>{}
+const part = axios.create(backendPoint)
+
+// part.interceptors.request.use((config)=>{
+//     const token = store.getState()
+//     console.log(token)
+//     config.headers['Authorization'] = token? `Bearer ${token}` : ''
+// })
 
 const home = createAsyncThunk('home', async () => {
     try {
         const res = await axios.get(backendPoint)
-
-        return res
+        return res.data
     } catch (err) {
         console.log(err.code)
         return err.code

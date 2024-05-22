@@ -17,8 +17,6 @@ const register = async (req, res) => {
     await newUser.save();
     res.status(200).json({"username":username});
   } else if (password != confirmPassword) {
-    console.log(password)
-    console.log(confirmPassword)
     console.log("passwords doesnt match")
     res.json({"message":'passwords doesnt match'});
   }
@@ -33,7 +31,7 @@ const login = async (req, res) => {
     const token = jwt.sign(user.username, 'jwt')
     req.username = user.username
     
-    res.status(200).json({token:token, user:user.username, message:'user logged in successfully '});
+    res.status(200).json({token:token, user:user.username, message:'user logged successfully '});
   } else if (password != user.password) {
     res.json('email/password doesnt match');
   }
