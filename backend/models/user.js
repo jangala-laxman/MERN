@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
   role: {
     eval: ['user', 'admin'],
   },
+  refresh_Token:{
+    type:String
+  }
 });
 
 const user = mongoose.model('User', userSchema);

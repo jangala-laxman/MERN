@@ -2,20 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios'
 import store from '../store'
 // import axiosIns from "../axios"
-const backendPoint = 'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io'
-
-// const AttachToken = ()=>{}
-const part = axios.create(backendPoint)
-
-// part.interceptors.request.use((config)=>{
-//     const token = store.getState()
-//     console.log(token)
-//     config.headers['Authorization'] = token? `Bearer ${token}` : ''
-// })
+const baseUrl = 'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io'
 
 const home = createAsyncThunk('home', async () => {
     try {
-        const res = await axios.get(backendPoint)
+        const res = await axios.get(baseUrl)
         return res.data
     } catch (err) {
         console.log(err.code)
@@ -25,7 +16,7 @@ const home = createAsyncThunk('home', async () => {
 
 const login = createAsyncThunk('login', async ({ username, password }) => {
     try {
-        const res = await axios.post(backendPoint + '/user/login', {
+        const res = await axios.post(baseUrl + '/user/login', {
             email: username,
             password: password
         })
@@ -40,7 +31,7 @@ const login = createAsyncThunk('login', async ({ username, password }) => {
 
 const register = createAsyncThunk('register', async (form) => {
     try {
-        const res = await axios.post(backendPoint + '/user/register', {
+        const res = await axios.post(baseUrl + '/user/register', {
             username: form.username,
             email: form.email,
             age: form.age,

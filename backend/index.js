@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const userRouter = require('./routers/user.router.js');
 const verifyToken = require('./middleware/verifyToken.js')
+const cookieParser = require('cookie-parser')
 mongoose
   .connect('mongodb+srv://srilaxman48:L1u9c9k9y@cluster0.zwtmwnc.mongodb.net/MERN')
   .then(() => console.log('Connected to MongoDB'))
@@ -15,8 +16,8 @@ const corsOption = {
   methods: ["GET", "POST", "PUT", "DELETE"],
 }
 app.use(cors(corsOption));
-
 app.use(express.json());
+app.use(cookieParser())
 app.use('/user', userRouter);
 app.get('/', verifyToken, (req, res) => {
   res.send('hi there');

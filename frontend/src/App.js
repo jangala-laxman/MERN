@@ -51,8 +51,8 @@ function App() {
       </header>
       <React.Suspense fallback="Loading...">
         <Routes>
-          <Route element={<ProtectedRoute/>}>
             <Route path="/" element={<Home />} />
+          <Route element={<ProtectedRoute/>}>
           </Route>
           <Route path="/category" element={<Category />} />
           <Route path="/orders" element={<Orders />} />
