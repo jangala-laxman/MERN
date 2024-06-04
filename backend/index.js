@@ -14,12 +14,18 @@ const corsOption = {
   origin: ['https://3000-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io'],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: [
+    "set-cookie",
+    "Content-Type",
+    "Access-Control-Allow-Origin",
+    "Access-Control-Allow-Credentials",
+  ],
 }
 app.use(cors(corsOption));
 app.use(express.json());
 app.use(cookieParser())
 app.use('/user', userRouter);
-app.get('/', verifyToken, (req, res) => {
+app.get('/',  (req, res) => {
   res.send('hi there');
 });
 

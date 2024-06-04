@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { home } from '../redux/thunk/auth.thunk'
-
-import {useDispatch} from 'react-redux'
+import Product from '../Components/Product'
 const Home = () => {
-  const dispatch = useDispatch()
+
   const [data, setData] = useState([])
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    fetchData()
-    dispatch(home())    
-  }
+
   const fetchData = ()=>{
-    const res = fetch('https://fakestoreapi.com/products')
+    const res = fetch('https://api.escuelajs.co/api/v1/products')
     .then(res=>res.json())
     .then(res=>setData(res))
     .catch(err=>console.log(err))
     
     console.log(res)
-    return res
   }
+
+  useEffect(()=>{
+    fetchData()
+  })
 
   return (
     <div>
       <h2>Home</h2>
-        <button onClick={handleSubmit}>click here</button>
+        
         {data.length > 0 ? data.map((item)=>{
           return (
-            <div key={item.id}>
-              <img src={item.image} alt={item.description} width={100} height={100} />
-            </div>
+            <Product key={item.id} 
+              title={item.title}
+              description={item.description}
+              images={item.images}
+              price={item.price}
+              category={item.category}
+            />
           )
         }) : <div>No data</div>}
       </div>

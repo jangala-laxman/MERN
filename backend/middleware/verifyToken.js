@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 const verifyToken = async(req, res, next)=>{
-    const token = req.headers['authorization'].split(' ')[1]
+    const token = req.headers['authorization']?.split(' ')[1]
     console.log(token)
     if(token){
         const compare = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,(err, decoded)=>{

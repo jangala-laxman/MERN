@@ -1,11 +1,12 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.png'
 
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import ProtectedRoute from './Components/Reuse/ProtectedRoute';
+import { useSelector } from 'react-redux';
 
 const Login = React.lazy(() => import('./Components/Login'))
 const Register = React.lazy(() => import('./Components/Register'))
@@ -18,12 +19,19 @@ const Category = React.lazy(() => import('./Components/Category'))
 
 function App() {
   const [openMenu, setOpenMenu] = useState(true)
+  const [isLogged, setisLogged] = useState(false)
+  const state = useSelector(state => state.auth)
 
   const handleMenu = (e) => {
     e.preventDefault()
     setOpenMenu((prev) => prev = !prev)
   }
 
+  useEffect(() => {
+    if (state.token !== "") {
+      setisLogged(true)
+    }
+  })
   return (
     <div className="App">
 
@@ -43,16 +51,19 @@ function App() {
             <Link to="/cart" className='links'>Cart</Link>
             <Link to="/wishlist" className='links'>WishList</Link>
           </div>
-          <div className='sign'>
+          {isLogged ? <div className='sign'>
             <Link to="/user/login" className='links'>Login</Link>
             <Link to="/user/register" className='links'>Register</Link>
-          </div>
+          </div> :
+            <div>
+              <Link to="/user/logout" className='links'>Logout</Link>
+            </div>}
         </div>
       </header>
       <React.Suspense fallback="Loading...">
         <Routes>
             <Route path="/" element={<Home />} />
-          <Route element={<ProtectedRoute/>}>
+          <Route element={<ProtectedRoute />}>
           </Route>
           <Route path="/category" element={<Category />} />
           <Route path="/orders" element={<Orders />} />
