@@ -1,13 +1,13 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+
 require('dotenv').config()
 
 const register = async (req, res) => {
   const { username, age, email, password, confirmPassword } = req.body;
   if(!username || !email || !password) return res.status(400).json({"message":"empty username/email/password"})
   const user = await User.findOne({ email: email });
-
   if (user)
     return res.status(400).json({ 'message': 'user email already exists' });
  
@@ -29,7 +29,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   if(!email || !password) return res.status(400).json({"message":"empty username/password"})
-  const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email });
   if (!user) return res.status(401).json({ message: "email doesn't exist" });
   const compare = await bcrypt.compare(password, user.password)
   if (compare) {
@@ -37,8 +37,8 @@ const login = async (req, res) => {
     const refresh_token = jwt.sign(user.username, process.env.REFRESH_TOKEN_SECRET)
     await user.updateOne({refresh_Token:refresh_token})
     req.user = user
-    res.cookie('jwt', refresh_token, {httpOnly:true, maxAge:24*60*60*1000})
-    res.status(200).json({token:access_token, user:user.username, message:'user logged successfully '});
+    res.cookie('jwt', refresh_token, {httpOnly:true, maxAge:60*1000})
+    res.status(200).json({token:access_token, user:user.username, message:'user logged successfully ', expiresAt:60*1000});
   } else if (password != user.password) {
     res.json('email/password doesnt match');
   }

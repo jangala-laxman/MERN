@@ -1,0 +1,34 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f5f5f5;
+}
+
+.banner{
+    width:90%;
+    height:max-content;
+    margin:20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bannerImg{
+    margin:0px 10px;
+    
+}
+
+.gender{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 75%;
+    height: 25rem;
+}
+
+.gender>img:hover{
+    cursor: pointer;
+    opacity: 0.3;
+}

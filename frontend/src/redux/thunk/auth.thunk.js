@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios'
-import store from '../store'
+// import store from '../store'
 // import axiosIns from "../axios"
 const baseUrl = 'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io'
 
