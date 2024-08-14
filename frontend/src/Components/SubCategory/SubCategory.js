@@ -4,9 +4,9 @@ import Product from '../Product/Product'
 import './subCategory.css'
 
 const SubCategory = ({ gender }) => {
-    console.log(gender)
-    let d = data.filter(item =>item.Gender===gender )
-    console.log(d)
+    // console.log(gender)
+    // let d = data.filter(item =>item.Gender===gender )
+    // console.log(d)
     return (
         <div>
             {gender === "Men" && (
@@ -14,7 +14,7 @@ const SubCategory = ({ gender }) => {
                     <h3>Men</h3>
                     <div className='list'>
                         {data.filter(item => item.Gender !== "Men").map(item => (
-                            <Product key={item.ProductId} title={item.ProductTitle} images={item.ImageURL} category={item.Category} price={item.ProductId} />
+                            <Product key={item.ProductId} title={item.ProductTitle} image={item.ImageURL} category={item.Category} price={item.ProductId} />
                         ))}
                     </div>
                 </>
