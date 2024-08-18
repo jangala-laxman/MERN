@@ -1,12 +1,13 @@
-const Cart = require('../models/cart')
+const User = require('../models/user')
 
 const addToCart = async(req, res)=>{
    try{
-        await Cart.findByIdAndUpdate({id:req.params.cartId},{
-            products: [...existingProducts.products, req.body.product],
-            count:existingProducts.length + req.body.product.length
-        })
-        console.log("item add to cart successfully")
+        const user = await User.findOne({email:"srilaxman48@gmail.com"})
+        let cart = user.cart
+        cart= [...cart, ...req.body.product]
+        let count=  cart.length
+        await user.updateOne({cart:cart, count:count})
+
         res.status(200).json({"message":"added to cart"})
    }catch(err){
         console.log(err)
@@ -16,18 +17,29 @@ const addToCart = async(req, res)=>{
 
 const removeFromCart = async(req,res)=>{
     try{
-        const cart = await Cart.findById({id:req.params.id})
-        const products = cart.products
-        const newCart = products.filter(item=>item.id !== req.params.productId)
-        await cart.updateOne({
-            products:newCart
+        const user = await User.findOne({email:"srilaxman48@gmail.com"})
+        const products = user.cart
+        const newCart = products.filter(item=>item.ProductId != req.params.productId)
+        console.log("newCart", newCart)
+        await User.updateOne({
+            cart:newCart
         })
-        res.status(200).json({"message":"item deleted from cart successfully"})
+        res.status(200).json({newCart})
     }catch(err){
         console.log(err)
         res.status(500).json({"error":"failed to remove the item from cart"})
     }
 } 
 
+const getCart = async(req,res)=>{
+    try{
+        const user = await User.findOne({email:"srilaxman48@gmail.com"})
+        console.log(user.cart)
+        res.json(user.cart)
+    }catch(err){
+        console.log(err)
+        res.json({"err":err})
+    }
+}
 
-module.exports = {addToCart, removeFromCart}
+module.exports = {addToCart, removeFromCart, getCart}

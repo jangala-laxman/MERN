@@ -1,20 +1,23 @@
 const mongoose = require('mongoose')
-
 const orderSchema = new mongoose.Schema({
-    id:{
-        type:Number,
-        eval:Math.floor(Math.random(0, 1)),
-    },
+    products : [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: product,
+        required:true,
+        index:{unique:true}
+    }],
     value:{
         type:Number,
         required: true
     },
     address:{
         type:String,
-        required:true
+        required:true,
+        index:true
     },
     payment:{
         type:boolean,
+        index:{unique:true}
     }
 }) 
 

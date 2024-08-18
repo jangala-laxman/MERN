@@ -5,23 +5,15 @@ const productSchema = new mongoose.Schema({
         required:true
     },
     productImage:{
-        type:buffer,        
-    },
-    description:{
-        type:String,
-        required:true
+        type:String,    
+        required:true    
     },
     price:{
         type:Number,
         required:true
     },
-    rating:{
-        type:Number,
-        required:true
-    },
     category:{
         type:String,
-        eval:['shirts', 'trousers', 'shoes', 'watches', 'innerwear']
     }
 })
 

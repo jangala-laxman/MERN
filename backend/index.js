@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const userRouter = require('./routers/user.router.js');
 const verifyToken = require('./middleware/verifyToken.js')
 const cookieParser = require('cookie-parser')
-const stripe = require("stripe")(process.env.STRIPE_API_KEY)
+const orderRouter = require('./routers/order.router.js')
+const cartRouter = require('./routers/cart.router.js')
+
 mongoose
   .connect('mongodb+srv://srilaxman48:L1u9c9k9y@cluster0.zwtmwnc.mongodb.net/MERN')
   .then(() => console.log('Connected to MongoDB'))
@@ -26,7 +28,10 @@ app.use(cors(corsOption));
 app.use(express.json());
 app.use(cookieParser())
 app.use('/user', userRouter);
-app.get('/', verifyToken, (req, res) => {
+app.use('/order', orderRouter)
+app.use('/cart', cartRouter)
+
+app.get('/', (req, res) => {
   res.send('hi there');
 });
 

@@ -10,8 +10,6 @@ import banner2 from '../../assets/images/banner2.jpg'
 import banner3 from '../../assets/images/banner3.jpg'
 import banner4 from '../../assets/images/banner4.jpg'
 import banner5 from '../../assets/images/banner5.jpg'
-
-
 import './Home.css'
 import SubCategory from '../SubCategory/SubCategory'
 import { Link } from 'react-router-dom'
@@ -37,8 +35,8 @@ const Home = () => {
         <h2>Categories</h2>
         <h4>Shop for </h4>
         <div className='gender'>
-          <Link to="/men"><img src={man} alt="Men" loading='lazy' height={300} onClick={(e)=>setCategory(prev=>prev=e.target.alt)}/></Link>
-          <Link to="/women"><img src={woman} alt="Women" loading='lazy' height={300} onClick={(e)=>setCategory(prev=>prev=e.target.alt)}/></Link>
+          <Link to="/men"><img src={man} alt="Men" loading='lazy' height={300} onClick={handleClick}/></Link>
+          <Link to="/women"><img src={woman} alt="Women" loading='lazy' height={300} onClick={handleClick}/></Link>
           <Link to="/boys"><img src={boy} alt="Boys" loading='lazy' height={300} onClick={handleClick}/></Link>
           <Link to="/girls"><img src={girl} alt="Girls" loading='lazy' height={300} onClick={handleClick}/></Link>
         </div>

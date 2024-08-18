@@ -1,6 +1,6 @@
 .product{
-    width: 7rem;
-    height: max-content;
+    width: 15rem;
+    height: 30rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -37,9 +37,9 @@
     right: 5px;
     bottom: 150px;
 }
-.priceandWishlist >p{
+.priceandWishlist >span{
     display: -webkit-box;   
-   -webkit-line-clamp: 2;   
+   -webkit-line-clamp: 1;   
    -webkit-box-orient: vertical;     
    overflow: hidden; 
 }
@@ -50,3 +50,26 @@
     border-radius: 4px;
 }
 
+.buttonDiv{
+    width:100%;
+    height:max-content;
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.buttonDiv>button{
+    width:max-content;
+    height:25px;
+    background-color: #f2f2f2;
+    padding:5px;
+    font-weight: 200;
+    border-radius: 10px;
+}
+
+.buttonDiv>button:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
