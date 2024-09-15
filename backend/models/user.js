@@ -56,6 +56,10 @@ const userSchema = new mongoose.Schema({
     count: Number,
     _id: false
   },
+  wishlist:{
+    type:[product],
+    _id:false
+  },
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'order'

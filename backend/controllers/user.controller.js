@@ -36,7 +36,8 @@ const login = async (req, res) => {
   if (compare) {
     const access_token = jwt.sign(user.username, process.env.ACCESS_TOKEN_SECRET)
     const refresh_token = jwt.sign(user.username, process.env.REFRESH_TOKEN_SECRET)
-    await user.updateOne({ refresh_Token: refresh_token })
+    const tok = await User.findOneAndUpdate({email:email},{refresh_Token:refresh_token}, {new : true})
+    console.log(tok)
     req.user = user
     res.cookie('jwt', refresh_token, { httpOnly: true, maxAge: 60 * 1000 })
     res.status(200).json({ token: access_token, user: user.username, message: 'user logged successfully ', expiresAt: 60 * 1000 });

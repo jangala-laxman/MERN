@@ -1,74 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import React, {useEffect, useState } from 'react'
 import data from '../../data.json'
 import './Product.css'
-import { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } from '../../redux/cart'
+import {addtoWishList, removeFromWishlist } from '../../redux/thunk/cart.thunk'
 import { useDispatch, useSelector } from 'react-redux'
+import {  Link } from 'react-router-dom';
+import ProductPage from '../ProductPage/ProductPage';
 const Product = ({ title, image, price, ProductId }) => {
     const [like, setLike] = useState(false)
-    const [addedToCart, setAddedToCart] = useState(false)
-    const state = useSelector(state => state.cart)
-    const [cartItems, setCartItems] = useState(state.cart)
+    const state = useSelector(state=>state.auth)
     const dispatch = useDispatch()
-    const handleClick = (e) => {
-        setLike(prev => !prev)
-    }
     const getProduct = (ProductId) => {
         let product = data.find(item => item.ProductId === ProductId)
         return product
     }
-    const addClick = (ProductId) => {
+    // useEffect(()=>{
+    //     const product = getProduct(ProductId)
+    //     if(state.wishlist.find(i=>i.ProductId === product.ProductId)){
+    //         setLike(prev=>prev=true)
+    //     }
+    // }, [ProductId, state.wishlist])
+
+    const wishlist = (ProductId)=>{
         let product = getProduct(ProductId)
-        if (state.cart.find(i => i.ProductId === ProductId) == null ) {
-            product = {...product, quantity:1}
-            setAddedToCart(prev=>!prev)
-            dispatch(addToCart(product))
-        }else if(state.cart.find(i => i.ProductId === ProductId).quantity ){
-            dispatch(increaseQuantity({ProductId, quantity:1} ))
-            setAddedToCart(prev=>!prev)
-        }
+        dispatch(addtoWishList(product))
     }
 
-    const increament = (ProductId)=>{
-        let quantity = state.cart.find(i => i.ProductId === ProductId).quantity
-        quantity++
-        dispatch(increaseQuantity({ProductId, quantity} ))
-
-    }
-    const removeClick = (ProductId) => {
-        let quantity = state.cart.find(i => i.ProductId === ProductId).quantity
-        if(quantity===1){
-            setAddedToCart(prev=>!prev)
-            dispatch(removeFromCart(ProductId))
-        }else{
-            quantity--
-            dispatch(decreaseQuantity({ProductId, quantity}))
-        }
+    const unWhishlist = (ProductId)=>{
+        let product = getProduct(ProductId)
+        dispatch(removeFromWishlist(product))
     }
 
-    
-
+    function redirect(){
+        let product = data.find(i=>i.ProductId===ProductId)
+        return <ProductPage product={product}/>    
+    }
     return (
-        <div className='product'>
-
-            <div className='prodImage' >
+        <div className='product' onClick={redirect}>
+           <Link to={`/${ProductId}`} >
+           <div className='prodImage'>
                 <img
                     src={image}
                     alt={title}
                 />
             </div>
+           </Link>
 
             <div className='priceandWishlist'>
-                <div className='like' onClick={handleClick}>
-                    {like ? <FavoriteIcon style={{ color: 'red' }} /> : <FavoriteBorderIcon />}
-                </div>
+                
                 <span>{title}</span>
                 <p>₹{price}</p>
-                <div className='buttonDiv'>
-                    {addedToCart ?
-                        <><button onClick={() => increament(ProductId)}>+</button>{ state.cart.find(i => i.ProductId === ProductId).quantity }<button onClick={()=>removeClick(ProductId)}>-</button></>
-                        : <button onClick={() => addClick(ProductId)}>Add To Cart</button>}</div>
+                <span>⭐⭐⭐⭐⭐</span>
+                <div className='like'>
+                    {like ? <button onClick={()=>unWhishlist(ProductId)} style={{ backgroundColor: 'blue', color:'white' }} >Added to wishlist</button> : <button onClick={()=>wishlist(ProductId)}>Wishlist</button>}
+                </div>
             </div>
 
         </div>

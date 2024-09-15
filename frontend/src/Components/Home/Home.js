@@ -11,7 +11,6 @@ import banner3 from '../../assets/images/banner3.jpg'
 import banner4 from '../../assets/images/banner4.jpg'
 import banner5 from '../../assets/images/banner5.jpg'
 import './Home.css'
-import SubCategory from '../SubCategory/SubCategory'
 import { Link } from 'react-router-dom'
 const Home = () => {
   let bannerArray = [banner, banner2, banner3, banner4, banner5]
@@ -27,8 +26,8 @@ const Home = () => {
       <h2>Home</h2>
       <div className='main'>
         <section className='banner'>
-          {bannerArray.map(item=>(
-            <img src={item} alt='banner' className='bannerImg'/>
+          {bannerArray.map((item, index)=>(
+            <img key={index} src={item} alt='banner' className='bannerImg'/>
           ))}
         
         </section>

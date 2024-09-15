@@ -1,11 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from './../data.json'
-
-// data = data.map(i=>{
-//     let quantity = 0
-//     i={...i, quantity}
-//     return i
-// })
 
 const initialState ={
     cartSize:0,
@@ -19,17 +12,26 @@ const cartSlice = createSlice({
     reducers:{
         addToCart:(state,action)=>{
             state.cart =  [...state.cart, action.payload]
-            state.cartSize = state.cart.length
+            state.cartSize = state.cart.reduce((acc, i)=>{
+                acc = acc+i.quantity
+                return acc
+            }, 0)
         },
         removeFromCart:(state,action)=>{
-            state.cart.filter(i=>i.ProductId !== action.payload.ProductId  )
-            state.cartSize = state.cart.length
+            state.cart.filter(i=>i.ProductId !== action.payload.ProductId)
         },
         increaseQuantity:(state, action)=>{ 
             state.cart.find(i=>i.ProductId === action.payload.ProductId).quantity = action.payload.quantity
+            state.cartSize = state.cart.reduce((acc, i)=>{
+                acc = acc+i.quantity
+                return acc
+            }, 0)
         },
         decreaseQuantity:(state, action)=>{ 
             state.cart.find(i=>i.ProductId === action.payload.ProductId).quantity = action.payload.quantity
+            let cartSize = 0
+            state.cart.forEach(i => cartSize += i.quantity)
+            state.cartSize = cartSize
         }
     },
    

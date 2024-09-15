@@ -1,0 +1,21 @@
+.productPage{
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid ;
+}
+
+.prod_Image{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prod_Image >img{
+    background-size: cover;
+    width: 400px;
+}
+
+
