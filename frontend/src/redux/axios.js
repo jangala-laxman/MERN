@@ -2,7 +2,7 @@ import axios from 'axios'
 import {useSelector} from 'react-redux'
 // import {'https'} from 'https' 
 const axiosInstance =  axios.create({
-  baseURL:'https://3001-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io',
+  baseURL:'https://3001-jangalalaxman-mern-67zza66eqef.ws-us116.gitpod.io',
   // httpsAgent: new https.Agent({
   //   rejectUnauthorized: false, // Disables SSL verification
   // }),

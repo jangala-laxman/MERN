@@ -32,6 +32,7 @@ function App() {
 
 
   useEffect(() => {
+    console.log(state.token)
     if (state.token !== "") {
       setisLogged(true)
     }
@@ -53,17 +54,18 @@ function App() {
             <Link to="/" className='links'>Home</Link>
             <Link to="/orders" className='links'>Orders</Link>
           </div>
-          {isLogged ? <div className='sign'>
-            <Link to="/user/login" className='links'>Login</Link>
-            <Link to="/user/register" className='links'>Register</Link>
-          </div> :
+          {isLogged ? 
             <div className='sign'>
               <Link to="/wishlist" className='links'><FavoriteBorderIcon /></Link>
               <Link to="/cart" className='links'><ShoppingCartIcon />
                 <span className='cartSize'>{cartState.cartSize}</span>
               </Link>
               {/* <Link to="/user/logout" className='links'>Logout</Link> */}
-            </div>}
+            </div>:
+            <div className='sign'>
+            <Link to="/user/login" className='links'>Login</Link>
+            <Link to="/user/register" className='links'>Register</Link>
+          </div>}
         </div>
       </header>
 

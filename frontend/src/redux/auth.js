@@ -39,7 +39,6 @@ const auth = createSlice({
             state.error = null    
             state.user = action.payload?.username      
             state.token = action.payload?.token      
-
         })      
         .addCase(login.pending, (state)=>{
             state.loading = true

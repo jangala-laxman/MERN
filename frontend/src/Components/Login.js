@@ -8,11 +8,11 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const state = useSelector((state)=>state.auth)
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(login({ username, password }))
+        dispatch(login({ email, password }))
         navigate("/")
     }
     console.log(state)
@@ -22,7 +22,7 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 {/* <Input label="username" value={username} onChange={handleUsername} /> */}
                 <div>
-                    <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div>
                     <input type="text" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />

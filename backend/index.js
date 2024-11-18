@@ -15,7 +15,7 @@ mongoose
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 const corsOption = {
-  origin: ['https://3000-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io', 'https://3000-jangalalaxman-mern-jxz5jnkbkmn.ws-us114.gitpod.io/men'],
+  origin: ['https://3000-jangalalaxman-mern-67zza66eqef.ws-us116.gitpod.io'],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: [
