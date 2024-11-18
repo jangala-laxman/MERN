@@ -4,21 +4,21 @@ import './Product.css'
 import {addtoWishList, removeFromWishlist } from '../../redux/thunk/cart.thunk'
 import { useDispatch, useSelector } from 'react-redux'
 import {  Link } from 'react-router-dom';
-import ProductPage from '../ProductPage/ProductPage';
 const Product = ({ title, image, price, ProductId }) => {
     const [like, setLike] = useState(false)
     const state = useSelector(state=>state.auth)
     const dispatch = useDispatch()
     const getProduct = (ProductId) => {
+        console.log(data)
         let product = data.find(item => item.ProductId === ProductId)
         return product
     }
-    // useEffect(()=>{
+    useEffect(()=>{
     //     const product = getProduct(ProductId)
     //     if(state.wishlist.find(i=>i.ProductId === product.ProductId)){
     //         setLike(prev=>prev=true)
     //     }
-    // }, [ProductId, state.wishlist])
+    }, [ProductId, state.wishlist])
 
     const wishlist = (ProductId)=>{
         let product = getProduct(ProductId)
@@ -30,12 +30,8 @@ const Product = ({ title, image, price, ProductId }) => {
         dispatch(removeFromWishlist(product))
     }
 
-    function redirect(){
-        let product = data.find(i=>i.ProductId===ProductId)
-        return <ProductPage product={product}/>    
-    }
     return (
-        <div className='product' onClick={redirect}>
+        <div className='product' >
            <Link to={`/${ProductId}`} >
            <div className='prodImage'>
                 <img

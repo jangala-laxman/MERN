@@ -9,8 +9,8 @@ import data from '../../data.json'
 import './Productpage.css'
 const ProductPage = () => {
     const params = useParams()
-    console.log(params)
-    const ProductId = Number(params.ProductId)
+    // console.log(params)
+    const ProductId = parseInt(params.ProductId)
     let product = data.find(i => i.ProductId === ProductId)
     const dispatch = useDispatch()
     const [like, setLike] = useState(false)
@@ -24,10 +24,10 @@ const ProductPage = () => {
         return product
     }
     useEffect(()=>{
-        const product = getProduct(ProductId)
-        if(state.wishlist.find(i=>i.ProductId === product.ProductId)){
-            setLike(prev=>prev=true)
-        }
+        // const product = getProduct(ProductId)
+        // if(state.wishlist.find(i=>i.ProductId === product.ProductId)){
+        //     setLike(prev=>prev=true)
+        // }
     }, [ProductId, state.wishlist])
 
     const wishlist = (ProductId)=>{
@@ -86,7 +86,7 @@ const ProductPage = () => {
                 {like ? <button onClick={()=>unWhishlist(ProductId)} style={{ backgroundColor: 'blue', color:'white' }} >Added to wishlist</button> : <button onClick={()=>wishlist(ProductId)}>Wishlist</button>}
                 </div>
                 <span>{product.ProductTitle}</span>
-                <p>₹{product.price}</p>
+                <p>₹{product.ProductId/100}</p>
                 <div className='buttonDiv'>
                     {addedToCart ?
                         <>

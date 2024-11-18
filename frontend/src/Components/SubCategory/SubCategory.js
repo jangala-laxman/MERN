@@ -23,7 +23,7 @@ const SubCategory = ({ gender }) => {
                     <h3>Women</h3>
                     <div className='list'>
                         {data.filter(item => item.Gender !== "Women").map(item => (
-                            <Product key={item.ProductId} title={item.ProductTitle} images={item.ImageURL ? item.ImageURL :dummy} category={item.Category} price={item.ProductId} />
+                            <Product key={item.ProductId} ProductId={item.ProductId} title={item.ProductTitle} image={item.ImageURL ? item.ImageURL :dummy} category={item.Category} price={item.ProductId} />
                         ))}
                     </div>
                 </>)
@@ -33,7 +33,7 @@ const SubCategory = ({ gender }) => {
                     <h3>Boys</h3>
                     <div className='list'>
                         {data.filter(item => item.Gender !== "Boys").map(item => (
-                            <Product key={item.ProductId} title={item.ProductTitle} images={item.ImageURL ? item.ImageURL :dummy} category={item.Category} price={item.ProductId} />
+                            <Product key={item.ProductId} ProductId={item.ProductId} title={item.ProductTitle} image={item.ImageURL ? item.ImageURL :dummy} category={item.Category} price={item.ProductId} />
                         ))}
                     </div>
                 </>)}
@@ -42,7 +42,7 @@ const SubCategory = ({ gender }) => {
                     <h3>Girls</h3>
                     <div className='list'>
                         {data.filter(item => item.Gender !== "Girls").map(item => (
-                            <Product key={item.ProductId} title={item.ProductTitle} images={item.ImageURL ? item.ImageURL :dummy} category={item.Category} price={item.ProductId} />
+                            <Product key={item.ProductId} ProductId={item.ProductId} title={item.ProductTitle} image={item.ImageURL ? item.ImageURL :dummy} category={item.Category} price={item.ProductId} />
                         ))}
                     </div>
                 </>)}
