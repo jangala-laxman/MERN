@@ -10,11 +10,12 @@ import ProtectedRoute from './Components/Reuse/ProtectedRoute';
 import { useSelector } from 'react-redux';
 import SubCategory from './Components/SubCategory/SubCategory';
 import ProductPage from './Components/ProductPage/ProductPage';
+import useToken from './hooks/useToken';
 
 const Login = React.lazy(() => import('./Components/Login'))
 const Register = React.lazy(() => import('./Components/Register'))
 const Home = React.lazy(() => import('./Components/Home/Home'))
-const Cart = React.lazy(() => import('./Components/Cart'))
+const Cart = React.lazy(() => import('./Components/Cart/Cart'))
 const Orders = React.lazy(() => import('./Components/Orders'))
 const WishList = React.lazy(() => import('./Components/WishList'))
 
@@ -30,13 +31,14 @@ function App() {
     setOpenMenu((prev) => prev = !prev)
   }
 
+  const token = useToken();
 
   useEffect(() => {
     console.log(state.token)
-    if (state.token !== "") {
+    if(token){
       setisLogged(true)
     }
-  }, [state.token])
+  }, [token])
   return (
     <div className="App">
 

@@ -21,7 +21,9 @@ const login = createAsyncThunk('login', async ({ email, password }) => {
             password: password
         })
         console.log(res.data)
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+
+        
         return res.data
     }
     catch (err) {
